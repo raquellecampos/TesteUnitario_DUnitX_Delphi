@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CA5A5C6B-E3FA-45B0-B8B2-33099FFF28A4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ConsumoVeiculo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\ConsumoVeiculoTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ConsumoVeiculo">
+        <MSBuild Projects="ConsumoVeiculo.dproj"/>
+    </Target>
+    <Target Name="ConsumoVeiculo:Clean">
+        <MSBuild Projects="ConsumoVeiculo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ConsumoVeiculo:Make">
+        <MSBuild Projects="ConsumoVeiculo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ConsumoVeiculoTests">
+        <MSBuild Projects="Test\ConsumoVeiculoTests.dproj"/>
+    </Target>
+    <Target Name="ConsumoVeiculoTests:Clean">
+        <MSBuild Projects="Test\ConsumoVeiculoTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ConsumoVeiculoTests:Make">
+        <MSBuild Projects="Test\ConsumoVeiculoTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ConsumoVeiculo;ConsumoVeiculoTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ConsumoVeiculo:Clean;ConsumoVeiculoTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ConsumoVeiculo:Make;ConsumoVeiculoTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
